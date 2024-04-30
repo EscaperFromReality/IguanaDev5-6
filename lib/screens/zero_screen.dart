@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:untitled/main.dart';
+import 'package:untitled/screens/first_screen.dart';
+import 'package:untitled/screens/fourth_screen.dart';
 
 class ZeroScreen extends StatefulWidget {
   const ZeroScreen({super.key, required this.title});  final String title;  @override  State<ZeroScreen> createState() => _ZeroScreenState();}
@@ -13,48 +15,52 @@ class _ZeroScreenState extends State<ZeroScreen> {
       appBar: AppBar(
         centerTitle: true,
         title: const Text(
-          'First Screen',
+          'Zero Screen',
         ),
       ),
         body: Center(
             child: SizedBox(
-                width: 400, height: 90,
-                child: cp.whatIsThatInterface() ? const Column(
+                width: 600, height: 120,
+                child: cp.whatIsThatInterface() ? Column(
                   children:  [
-                    SizedBox( height: 30),
-                    Row(
+                    const SizedBox( height: 20),
+                    const Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text('Running Web')
                       ],
                     ),
-                    SizedBox( height: 30),
+                    const SizedBox( height: 20),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         ElevatedButton(onPressed: (){
-                          () => context.go('/FirstScreen');
-                        }, child: const Text('Run App'),
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => const FirstScreen(title: '',)));
+                        }, child: const Text('Run Web App'),
                         ),
                       ],
                     ),
                   ],
                 ) :
                 Column(
-                  children: [const SizedBox( height: 30),
+                  children: [const SizedBox( height: 20),
                     const Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text('Running Desktop')
                       ],
                     ),
-                    const SizedBox( height: 30),
+                    const SizedBox( height: 20),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         ElevatedButton(onPressed: (){
-                          () => context.go('/FourthScreen');
-                        }, child: const Text('Run App')),
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => const FourthScreen(title: '',)));
+                        }, child: const Text('Run Desktop App')),
                       ],
                     ),
                   ],

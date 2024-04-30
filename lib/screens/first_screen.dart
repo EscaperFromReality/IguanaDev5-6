@@ -39,8 +39,9 @@ class _FirstScreenState extends State<FirstScreen> {
         child: const Icon(Icons.add),
       ),
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+        child: SizedBox(
+          height: 1920, width: 1080,
+          child: Column(
           children: [
             ElevatedButton(
               onPressed: () {
@@ -64,7 +65,7 @@ class _FirstScreenState extends State<FirstScreen> {
               onPressed: () {
                     () => context.go('/FourthScreen');
               },
-              child: const Text('To First Screen'),
+              child: const Text('To Fourth Screen'),
             ),
             Column(
                 children: [
@@ -83,6 +84,6 @@ class _FirstScreenState extends State<FirstScreen> {
           ],
         ),
       ),
-    );
+    ));
   }
 }

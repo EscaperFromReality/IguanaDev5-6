@@ -14,9 +14,8 @@ class Crossplatformer {
   bool whatIsThatInterface() {
     if (kIsWeb) {
       return true;
-    } else {
-      return (Platform.isWindows || Platform.isMacOS || Platform.isLinux || Platform.isMacOS || Platform.isAndroid || Platform.isFuchsia);
-    }
+    } else if (Platform.isWindows || Platform.isMacOS || Platform.isLinux || Platform.isMacOS || Platform.isAndroid || Platform.isFuchsia);
+    return false;
   }
 }
 
@@ -35,15 +34,15 @@ class _MyAppState extends State<MyApp> {
           },
           routes: <RouteBase>[
             GoRoute(
-              path: 'fourth_screen',
+              path: 'first_screen',
               builder: (BuildContext context, GoRouterState state) {
-                return const FourthScreen(title: '',);
+                return const FirstScreen(title: '',);
               },
               routes: <RouteBase>[
                 GoRoute(
-                  path: 'fifth_screen',
+                  path: 'fourth_screen',
                   builder: (BuildContext context, GoRouterState state) {
-                    return const FifthScreen(title: '',);
+                    return const FourthScreen(title: '',);
                   },
                 ),
               ],
