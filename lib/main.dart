@@ -30,7 +30,7 @@ class _MyAppState extends State<MyApp> {
         GoRoute(
           path: '/',
           builder: (BuildContext context, GoRouterState state) {
-            return const FirstScreen(title: '');
+            return const ZeroScreen(title: '');
           },
           routes: <RouteBase>[
             GoRoute(
@@ -52,12 +52,12 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
+      routerConfig: _router,
       title: 'Flutter Navigator',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const ZeroScreen(title: '',),
     );
   }
 }

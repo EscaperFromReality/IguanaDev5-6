@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:untitled/screens/second_screen.dart';
 import 'package:untitled/screens/third_screen.dart';
+import 'package:untitled/screens/fourth_screen.dart';
 import 'package:go_router/go_router.dart';
 
 class FirstScreen extends StatefulWidget {
@@ -23,6 +24,9 @@ class _FirstScreenState extends State<FirstScreen> {
     setState(() {
       columnItems.removeAt(index);
     });
+  }
+  void _fourth_screen(){
+    context.go('/first_screen/fourth_screen');
   }
   @override
   Widget build(BuildContext context) {
@@ -62,9 +66,7 @@ class _FirstScreenState extends State<FirstScreen> {
               child: const Text('To Third Screen'),
             ),
             ElevatedButton(
-              onPressed: () {
-                    () => context.go('/FourthScreen');
-              },
+              onPressed: _fourth_screen,
               child: const Text('To Fourth Screen'),
             ),
             Column(
