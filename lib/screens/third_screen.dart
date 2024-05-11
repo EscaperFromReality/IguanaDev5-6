@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:untitled/screens/first_screen.dart';
 import 'package:untitled/screens/second_screen.dart';
+import 'dart:math';
 
 class ThirdScreen extends StatefulWidget {
   const ThirdScreen({super.key, required this.title});  final String title;  @override  State<ThirdScreen> createState() => _ThirdScreenState();}
@@ -9,7 +10,7 @@ class _ThirdScreenState extends State<ThirdScreen> {
 
   int currentPageIndex = 0;
 
-  final listViewSeparatedItems = List.generate(10, (index) => 'Line ${index + 1}');
+  final listViewSeparatedItems = List.generate(1, (index) => 'Line ${index + 1}');
 
   get index => 10;
 
@@ -23,7 +24,21 @@ class _ThirdScreenState extends State<ThirdScreen> {
       listViewSeparatedItems.removeAt(index);
     });
   }
-
+  Future<bool> getRandomValue() {
+    return Future.delayed(const Duration(seconds: 3), () => Random().nextBool());
+  }
+  Future<void> saveLine() async {
+    /*setState(() {
+      listViewSeparatedItems.add("///");
+    });*/
+    bool result = await getRandomValue();
+    setState(() {
+      if (result)
+        listViewSeparatedItems.add("Success");
+      else
+        listViewSeparatedItems.add("Fail");
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,8 +54,9 @@ class _ThirdScreenState extends State<ThirdScreen> {
         child: const Icon(Icons.add),
       ),
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+        child: SizedBox(
+            height: 1920, width: 1080,
+          child: Column(
           children: [
             ElevatedButton(
               onPressed: () {
@@ -65,7 +81,7 @@ class _ThirdScreenState extends State<ThirdScreen> {
                       title: Text(listViewSeparatedItems[index]),
                       trailing: IconButton(
                         icon: const Icon(Icons.delete),
-                        onPressed: () => deleteListViewSeparatedItem(index),
+                        onPressed: () => saveLine(),
                       ),
                     )
                 );
@@ -76,6 +92,6 @@ class _ThirdScreenState extends State<ThirdScreen> {
           ],
         ),
       ),
-    );
+    ));
   }
 }

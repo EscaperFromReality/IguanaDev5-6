@@ -3,6 +3,7 @@ import 'package:untitled/screens/second_screen.dart';
 import 'package:untitled/screens/third_screen.dart';
 import 'package:untitled/screens/fourth_screen.dart';
 import 'package:go_router/go_router.dart';
+import 'dart:math';
 
 class FirstScreen extends StatefulWidget {
   const FirstScreen({super.key, required this.title});  final String title;  @override  State<FirstScreen> createState() => _FirstScreenState();}
@@ -11,7 +12,7 @@ class _FirstScreenState extends State<FirstScreen> {
 
   int currentPageIndex = 0;
 
-  final columnItems = List.generate(10, (index) => 'Line ${index + 1}');
+  final columnItems = List.generate(0, (index) => 'Line ${index + 1}');
 
   get index => 10;
 
@@ -25,8 +26,25 @@ class _FirstScreenState extends State<FirstScreen> {
       columnItems.removeAt(index);
     });
   }
-  void _fourth_screen(){
+  void fourthScreen(){
     context.go('/first_screen/fourth_screen');
+  }
+  void saveLine() {
+    /*setState(() {
+      columnItems.add("///");
+    });*/
+    Future<bool> messageFuture = getRandomValue();
+    messageFuture.then((result){
+      setState(() {
+        if (result)
+          columnItems.add("Success");
+        else
+          columnItems.add("Fail");
+      });
+    });
+  }
+  Future<bool> getRandomValue() {
+    return Future.delayed(const Duration(seconds: 3), () => Random().nextBool());
   }
   @override
   Widget build(BuildContext context) {
@@ -66,7 +84,7 @@ class _FirstScreenState extends State<FirstScreen> {
               child: const Text('To Third Screen'),
             ),
             ElevatedButton(
-              onPressed: _fourth_screen,
+              onPressed: fourthScreen,
               child: const Text('To Fourth Screen'),
             ),
             Column(
@@ -80,7 +98,16 @@ class _FirstScreenState extends State<FirstScreen> {
                             onPressed: () => deleteColumnItem(i),
                           ),
                         )
-                    )
+                    ),
+                    Card(
+                        child: ListTile(
+                          title: const Text('Get Bool Result'),
+                          trailing: IconButton(
+                            icon: const Icon(Icons.access_alarms),
+                            onPressed: () => saveLine(),
+                        ),
+                      )
+                  )
                 ]
             ),
           ],
